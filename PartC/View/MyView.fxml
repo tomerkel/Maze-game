@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CustomMenuItem?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioMenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<?import View.MazeDisplayer?>
+<AnchorPane fx:id="AnchorPaneAPP" prefHeight="788.0" prefWidth="1015.0" stylesheets="@GameWindowCSS.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MyViewController">
+   <children>
+      <BorderPane fx:id="BorderPaneAPP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="872.0" style="-fx-background-color: gray;" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+         <top>
+            <Pane prefHeight="72.0" prefWidth="1015.0">
+               <children>
+                  <MenuBar fx:id="menuBar" prefHeight="40.0" prefWidth="432.0">
+                    <menus>
+                      <Menu mnemonicParsing="false" text="File">
+                        <items>
+                              <MenuItem fx:id="NewButton" mnemonicParsing="false" onAction="#NewButtonHandle" text="New" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                          <MenuItem fx:id="SaveMazeButton" mnemonicParsing="false" onAction="#SaveButtonHandle" text="Save Maze" visible="false" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <MenuItem fx:id="LoadMazeButton" mnemonicParsing="false" onAction="#LoadButtonHandle" text="Load Maze" />
+                        </items>
+                      </Menu>
+                      <Menu mnemonicParsing="false" text="Options">
+                           <items>
+                              <MenuItem mnemonicParsing="false" onAction="#PropertiesHandle" text="Properties" />
+                           </items>
+                        </Menu>
+                      <Menu>
+                          <graphic>
+                              <Label fx:id="helpLabel" onMouseClicked="#HelpButtonHandle" text="Help" />
+                          </graphic>
+                      </Menu>
+                        <Menu mnemonicParsing="false" text="Music">
+                          <items>
+                              <RadioMenuItem fx:id="PlayMusicButton" mnemonicParsing="false" onAction="#PlayMusicButtonHandle" selected="true" text="Play">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="TGMusic" />
+                                 </toggleGroup>
+                              </RadioMenuItem>
+                              <RadioMenuItem fx:id="PauseMusicButton" mnemonicParsing="false" onAction="#PauseMusicButtonHandle" text="Pause" toggleGroup="$TGMusic" />
+                              <RadioMenuItem fx:id="StopMusicButton" mnemonicParsing="false" onAction="#StopMusicButtonHandle" text="Stop" toggleGroup="$TGMusic" />
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Volume">
+                                <items>
+                                    <CustomMenuItem fx:id="VolumeUpButton" hideOnClick="false" onAction="#VolumeUpButtonHandle">
+                                      <content>
+                                        <Label text="Volume +" />
+                                      </content>
+                                    </CustomMenuItem>
+                                    <CustomMenuItem fx:id="VolumeDownButton" hideOnClick="false" onAction="#VolumeDownButtonHandle">
+                                        <content>
+                                            <Label text="Volume -" />
+                                        </content>
+                                    </CustomMenuItem>
+                                </items>
+                              </Menu>
+                              <SeparatorMenuItem mnemonicParsing="false" />
+                              <Menu mnemonicParsing="false" text="Change Song">
+                                 <items>
+                                    <RadioMenuItem fx:id="SongAcousticButton" mnemonicParsing="false" onAction="#ChangeToAcoustic" text="Astronomia Acoustic ">
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="TGSongs" />
+                                       </toggleGroup>
+                                    </RadioMenuItem>
+                                    <RadioMenuItem fx:id="SongGuitarButton" mnemonicParsing="false" onAction="#ChangeToGuitar" text="Astronomia Guitar" toggleGroup="$TGSongs" />
+                                    <RadioMenuItem fx:id="SongOriginalButton" mnemonicParsing="false" onAction="#ChangeToOriginal" text="Astronomia Original" toggleGroup="$TGSongs" />
+                                    <RadioMenuItem fx:id="SongRemixButton" mnemonicParsing="false" onAction="#ChangeToRemix" text="Astronomia Remix " toggleGroup="$TGSongs" />
+                                    <RadioMenuItem fx:id="SongRetroButton" mnemonicParsing="false" onAction="#ChangeToRetro" selected="true" text="Astronomia Retro" toggleGroup="$TGSongs" />
+                                 </items>
+                              </Menu>
+                          </items>
+                        </Menu>
+                        <Menu>
+                            <graphic>
+                                <Label fx:id="AboutButton" onMouseClicked="#AboutButtonHandle" text="About" />
+                            </graphic>
+                        </Menu>
+                        <Menu mnemonicParsing="false">
+                           <graphic>
+                              <Label fx:id="ExitButton" onMouseClicked="#ExitButtonHandle" text="Exit" />
+                           </graphic>
+                        </Menu>
+                    </menus>
+                  </MenuBar>
+                  <ImageView fx:id="MenubarMovementImage" fitHeight="44.0" fitWidth="100.0" layoutX="404.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Sources/MazeImages/coffinDancePlayer.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </top>
+         <left>
+            <AnchorPane fx:id="AnchorPaneLeftAPP" prefHeight="617.0" prefWidth="237.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Separator disable="true" layoutX="247.0" layoutY="2.0" opacity="0.37" orientation="VERTICAL" prefHeight="423.0" prefWidth="5.0" style="-fx-background-color: black;" />
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="26.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Sources/Images/pallbearer.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="120.0" fitWidth="166.0" layoutX="45.0" layoutY="294.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Sources/Images/images.jpg" />
+                     </image>
+                  </ImageView>
+                  <Separator disable="true" layoutX="1.0" layoutY="414.0" opacity="0.37" prefHeight="11.0" prefWidth="250.0" style="-fx-background-color: black;" />
+                  <GridPane alignment="CENTER" layoutX="10.0" layoutY="14.0" prefHeight="137.0" prefWidth="232.0">
+                    <columnConstraints>
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="155.0" minWidth="10.0" prefWidth="145.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="123.0" minWidth="10.0" prefWidth="87.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Number of Rows :">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="21.0" prefWidth="157.0" text="Number of Columns :" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="SolveMazeButton" contentDisplay="CENTER" disable="true" mnemonicParsing="false" onAction="#SolveMazeButtonHandle" prefHeight="30.0" prefWidth="85.0" text="Solve Maze" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Button>
+                        <TextField fx:id="TextFieldRow" GridPane.columnIndex="1">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="TextFieldCol" prefHeight="31.0" prefWidth="84.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Button fx:id="GenerateButton" mnemonicParsing="false" onAction="#GenerateMazeButtonHandle" text="Generate Maze" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Button>
+                        <Label fx:id="ValidNumberLabel" mnemonicParsing="false" prefHeight="27.0" prefWidth="204.0" text="Enter Valid Number" textFill="#f2ff00" visible="false" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+         </left>
+          <center>
+              <Pane fx:id="PaneOfMaze" prefHeight="520.0" prefWidth="551.0">
+                  <children>
+                      <MazeDisplayer fx:id="mazeDisplayerCanvas" height="500.0" imageNameGoal="./src/Sources/MazeImages/CoffinDanceGoal.jpg" imageNamePlayer="./src/Sources/MazeImages/coffinDancePlayer.png" imageNameSol="./src/Sources/MazeImages/SolImage.png" imageNameWall="./src/Sources/MazeImages/CoffinDanceWall.jpg" onKeyPressed="#keyPressedHandle" onMouseClicked="#MazeDisplayerOnMouseClickHandle" width="500.0" />
+                  </children>
+              </Pane>
+          </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

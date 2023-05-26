@@ -1,0 +1,85 @@
+.button {
+    -fx-color-one: #d6d6d6;
+    -fx-color-two: #d9d9d9;
+    -fx-color-three: #f6f6f6;
+    -fx-background-color: linear-gradient(#f2f2f2, -fx-color-one),
+    linear-gradient(#fcfcfc 0%, -fx-color-two 20%, -fx-color-one 100%),
+    linear-gradient(#dddddd 0%, -fx-color-three 50%);
+    -fx-background-radius: 8, 7, 6;
+    -fx-background-insets: 0, 1, 2;
+    -fx-text-fill: black;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);
+}
+.button:hover {
+    -fx-color-one: red;
+    -fx-color-two: red;
+    -fx-color-three: red;
+}
+.button:pressed {
+    -fx-color-one: #235891;
+    -fx-color-two: #235891;
+    -fx-color-three: #235891;
+}
+
+.menu-item .label {
+    -fx-text-fill: white;
+}
+
+.menu-item:focused {
+    -fx-background-color: darkgray;
+}
+
+.menu-item:focused .label {
+    -fx-text-fill: blue;
+}
+
+.context-menu {
+    -fx-skin: "com.sun.javafx.scene.control.skin.ContextMenuSkin";
+    -fx-background-color: black;
+    -fx-background-insets: 0, 1, 2;
+    -fx-background-radius: 0 6 6 6, 0 5 5 5, 0 4 4 4;
+    /*    -fx-padding: 0.666667em 0.083333em 0.666667em 0.083333em;  8 1 8 1 */
+    -fx-padding: 0.333333em 0.083333em 0.666667em 0.083333em; /* 4 1 8 1 */
+}
+
+.menu-bar {
+    -fx-background-color: gray;
+}
+.menu-bar > .container > .label {
+    -fx-text-fill: white;
+}
+
+/*** Top-level menu itself (not selected / hovered) ***/
+.menu-bar > .container > .menu-button {
+    -fx-background-color: #C0C0C0;
+}
+
+/*** Top-level menu's label (not selected / hovered) ***/
+.menu-bar > .container > .menu-button > .label {
+    -fx-text-fill: black;
+}
+
+/*** Top-level menu's label (disabled) ***/
+.menu-bar > .container > .menu-button > .label:disabled {
+    -fx-opacity: 1.0;
+}
+
+/*** Top-level menu itself (selected / hovered) ***/
+.menu-bar > .container > .menu-button:hover,
+.menu-bar > .container > .menu-button:focused,
+.menu-bar > .container > .menu-button:showing {
+    -fx-background-color: black;
+}
+
+/*** Top-level menu's label (selected / hovered) ***/
+.menu-bar > .container > .menu-button:hover > .label,
+.menu-bar > .container > .menu-button:focused > .label,
+.menu-bar > .container > .menu-button:showing > .label {
+    -fx-text-fill: white;
+}
+
+.text-field{
+    -fx-shape: "M200,0 H0 V30 H170 Z";
+    -fx-shape: "M170,0 H0 V30 H200 Z";
+    -fx-padding: 4 30 4 8;
+}
